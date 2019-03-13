@@ -17,7 +17,7 @@
 
 \section{Background}
 
-As Figure \ref{fig:traditional_data_model} demonstrates, the traditional way for researchers to process data which they do not produce themselves or already possess is to first transfer the data from a remote holding source to themselves. This process is almost always the bottleneck in data processing as large data sets can take a large amount of time to retrieve. This is a growing issue and will continue to become more serious as time progresses and data sizes increase. Data processing capabilities must be made more readily available at institutions that carry large data sets to offset the amount of time wasted in transferring such data.
+As Figure \ref{fig:traditional_data_model} demonstrates, the traditional way for researchers to process data which they do not produce themselves or already possess is to first transfer the data from a remote holding source to themselves. This process is almost always the bottleneck in data processing as large data sets can take a large amount of time to retrieve. This is a growing issue and will continue to become more serious as time progresses and data sizes increase. As such, data processing capabilities should ideally be made more readily available at institutions that generate and/or carry large data sets to offset the amount of time wasted in transferring such data.
 
 \begin{figure}[ht!]
 \centering
@@ -100,6 +100,8 @@ A backend service will be responsible for translating the user input from the we
 The assumption is that an institution will already be running a cloud environment and Nikeza will interface with the existing system in order to give it commands for correct execution based on the user input.
 
 As Figure \ref{fig:existing_provider_environment} shows, the premise is that Nikeza would sit as a service which complements an existing storage and cloud infrastructure. A web interface is presented to a user with various options regarding which data he or she needs to access in order to do processing on, the location of the output data and options to upload their own workflow blueprint to the server. Once the user has submitted this, the Nikeza system translates their workflow blueprint into commands that are understood by the existing infrastructure. The user will receive periodic updates on the process of their workflow execution.
+
+While there are other potential tools and services that could achieve similar results, a cloud environment is used due to the growing popularity of the cloud storage and computing ecosystems in the biomedical space \parencite{navale2018cloud,connor2016climb,afgan2015genomics,liu2014cloud}. Along with this, utilizing a cloud environment affords the potential for many aforementioned tool and services to be implemented on top of it with a more streamlined and integrated, single-access perspective.
 
 \begin{figure}[ht!]
 \centering
@@ -205,4 +207,4 @@ The user must be presented with an easy to understand, human friendly web interf
 The application should support different environments through a translation plugin system in which the administrator of a system can write the needed operations in order to support their system.
 
 \section{Testing Framework}
-<!-- include stuff there -->
+The testing 
