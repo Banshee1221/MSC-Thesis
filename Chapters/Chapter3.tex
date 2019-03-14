@@ -46,9 +46,9 @@ Other than the server hardware, two network switches were utilised. One switch w
 
 The following section will detail the various components of OpenStack that were used in the implementation of the project, as well as the components of Nikeza and how they interact with them.
 
-OpenStack is a highly modular open source IaaS platform that can be self hosted at any institution. There are various components in use for this project to achieve the set goals.
+OpenStack is a highly modular open source IaaS platform that can be self-hosted at any institution. There are various components in use for this project to achieve the set goals.
 
-Figure \ref{fig:network_layout} describes the hardware layout that hosts the OpenStack installation. The various services that make up the cloud environment are distributed among them. Each of the servers on which the OpenStack installation is placed were loaded with Ubuntu Server 16.04.2 as their operating systems. OpenStack Newton was chosen as the release for the project, due to it being the newest at the initiation time.
+Figure \ref{fig:network_layout} describes the hardware layout that hosts the OpenStack installation. The various services that make up the cloud environment are distributed among them. Each of the servers on which the OpenStack installation is placed was loaded with Ubuntu Server 16.04.2 as their operating systems. OpenStack Newton was chosen as the release for the project, due to it being the newest at the initiation time.
 
 \begin{figure}[ht!]
 \centering
@@ -125,7 +125,7 @@ Swift   & Object Store  & 10.1    & The Neutron services that run on the compute
 
 \subsection{Software}
 
-The Python Flask micro-framework was used to rapidly create and deploy stages of this application.
+The Python Flask micro-framework was used to rapidly create and deploy the various stages of this application.
 
 \subsubsection{Project Breakdown}
 
@@ -197,7 +197,7 @@ Figure \ref{fig:module_deps} gives a visual representation of the interaction of
 \label{fig:module_deps}
 \end{figure}
 
-plugins are used with the Nikeza system in order to allow functionality with different backend cloud systems and storage services. The way this is achieved is to have a file called "vars.conf" which contains all the configuration variables for runtime. The configuration parameters are detailed in scheme \ref{sch:system_params}.
+Plugins are used with the Nikeza system in order to allow functionality with different backend cloud systems and storage services. The way this is achieved is to have a file called "vars.conf" which contains all the configuration variables for runtime. The configuration parameters are detailed in scheme \ref{sch:system_params}.
 
 \begin{scheme}[ht!]
 \makebox[\textwidth]{\fbox{%
@@ -253,21 +253,21 @@ As with the cloud backend, the file specified by "storage\_backend" contains a s
 
 The Common Workflow Language (CWL) specification was chosen to be used in the proof-of-concept system. This is a simple-to-learn and write language specification for researchers to wrap their pipeline into a single flowing set of reproducible instructions. The workflow language or tool chosen for the project is not critically important, as ideally many different types would be supported. For the purposes of this project, CWL is appropriate to test with due to it having various sample workflows to test.
 
-CWL affords various executors, which are tools that parse and execute the specification. These executors offer all sorts of different functionality and targets, such as the Toil executor which can execute CWL workflows against cloud environments such as Amazon AWS. The CWL group also provides a reference executor which implements the basic functionality that a CWL executor should posess. This was deemed to be the simplest tool to use to answer the project aims posed in Chapter \ref{Chapter1}.
+CWL affords various executors, which are tools that parse and execute the specification. These executors offer all sorts of different functionality and targets, such as the Toil executor which can execute CWL workflows against cloud environments such as Amazon AWS. The CWL group also provides a reference executor which implements the basic functionality that a CWL executor should possess. This was deemed to be the simplest tool to use to answer the project aims posed in Chapter \ref{Chapter1}.
 
 \subsubsection{Container System}
 
-Docker was chosen as the container engine due to its large selection of container images available on its public repository, Docker Hub/Store, as well as it having the largest community involvement and support. The only other container engine that was considered was Singularity, due to its more research driven focus. Singularity also allows containers to execute in a non-root environment, meaning potentially less complications in terms of security. 
+Docker was chosen as the container engine due to its large selection of container images available on its public repository, Docker Hub/Store, as well as it having the largest community involvement and support. The only other container engine that was considered was Singularity, due to its more research-driven focus. Singularity also allows containers to execute in a non-root environment, meaning potentially fewer complications in terms of security. 
 
-However, due to the fact that a virtual machine is created for the researcher's execution environment and only the data that the researcher will use with the containerised tools is pulled into said virtual machine, it was decided that Docker will be suitable. Any security risk that is presented by Docker is negated by the extra hypervisor security layer, as well as the fact that the potential attacker would already have access to the data pulled into the virtual environment even if it was through Singularity. The project was already well underway before Singularity was noticed.
+However, due to the fact that a virtual machine is created for the researcher's execution environment and only the data that the researcher will use with the containerised tools is pulled into the said virtual machine, it was decided that Docker will be suitable. Any security risk that is presented by Docker is negated by the extra hypervisor security layer, as well as the fact that the potential attacker would already have access to the data pulled into the virtual environment even if it was through Singularity. The project was already well underway before Singularity was noticed.
 
-There are various container orchestration systems, such as Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm/}}, Kubernetes\footnote{\url{https://kubernetes.io/}}, Red Hat OpenShift\footnote{\url{https://www.openshift.com/}} and Apache Mesos\footnote{\url{https://mesos.apache.org/}}. All of these serve to provide scheduling for multiple container instances to work together, have complex networking and communicate with shared storage together, which in turn allows them to perform more complex work loads. Originally, OpenStack's "Magnum" API extension\footnote{\url{https://wiki.openstack.org/wiki/Magnum}} was considered to be used as the core for Nikeza on OpenStack. This would have provided Nikeza native use of either Docker Swarm or Kubernetes on top of OpenStack, but it proved to be too time consuming to implement due to the immaturity of the "Magnum" project at the time.
+There are various container orchestration systems, such as Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm/}}, Kubernetes\footnote{\url{https://kubernetes.io/}}, Red Hat OpenShift\footnote{\url{https://www.openshift.com/}} and Apache Mesos\footnote{\url{https://mesos.apache.org/}}. All of these serve to provide scheduling for multiple container instances to work together, have complex networking and communicate with shared storage together, which in turn allows them to perform more complex workloads. Originally, OpenStack's "Magnum" API extension\footnote{\url{https://wiki.openstack.org/wiki/Magnum}} was considered to be used as the core for Nikeza on OpenStack. This would have provided Nikeza native use of either Docker Swarm or Kubernetes on top of OpenStack, but it proved to be too time-consuming to implement due to the immaturity of the "Magnum" project at the time.
 
 \section{Frontend}
 
 The frontend part of the system is the section that the end user, or researcher, deals with directly when engaging with the project. This is the visual representation that is exposed to them. This is provided through a website that they interact with.
 
-With reference to the above project breakdown diagram \ref{sch:dir_tree}, the "static" and "template" directories belong to the frontend part of the system. The "template" directory contains the template HTML documents that are rendered through the backend when the user requests an appropriate page. The "static" directory contains all the assets used to provide features and visuals to the user.
+With reference to the above project breakdown scheme \ref{sch:dir_tree}, the "static" and "template" directories belong to the frontend part of the system. The "template" directory contains the template HTML documents that are rendered through the backend when the user requests an appropriate page. The "static" directory contains all the assets used to provide features and visuals to the user.
 
 \section{Tools}
 
